@@ -52,20 +52,20 @@ response.addEventListener('mouseover', () => {
 });
 
 // le key press
-const ring = () => {
-  const audio = new Audio();
-  audio.src = "./enter.mp3";
-  audio.play();
-};
+//const ring = () => {
+  //const audio = new Audio();
+  //audio.src = "./enter.mp3";
+  //audio.play();
+//};
 
 const keypressContainer = document.querySelector(".keypress");
 const key = document.getElementById("key");
 
-document.addEventListener("keypress", (e) => {
+/*document.addEventListener("keypress", (e) => {
   key.textContent = e.key;
 
   ring();
-});
+});*/
 
 //Scroll Event
 
@@ -82,13 +82,47 @@ window.addEventListener("scroll", () => {
 })
 //--------------------------------------------
 // formulaire
+//--------------------------------------------
 const inputName = document.querySelector('input[type="text"]');
-const select = document.qu
+const select = document.querySelector("select");
+const form = document.querySelector("form");
 let pseudo = ""
+let language = "";
+
 inputName.addEventListener("input", (e) => {
   pseudo = e.target.value;
-  console.log(pseudo);
 });
 
+select.addEventListener("input", (e) => {
+  language = e.target.value;
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (cgv.checked) {
+    document.querySelector("form > div").innerHTML = `
+      <h3> Pseudo : ${pseudo}</h3>
+      <h4>Language préféré : ${language}</h4>`;
+    } else {
+    alert("Veuillez accepter les CGV");
+  }
+})
+//-------------------------------------------------
+//Load event avance que quand la page est chargé
+//-------------------------------------------------
+window.addEventListener("load", () => {
+  console.log('document chargé');
+});
+//-------------------------------------------------
+// ForEach
+//-------------------------------------------------
+//const boxes = document.getElementsByClassName("box");
+const boxes = document.querySelectorAll(".box");
+boxes.forEach((box) => {
+  box.addEventListener("click", (e) => {
+    e.target.style.transform = "scale(0.5)";
+  });
+});
 
 
