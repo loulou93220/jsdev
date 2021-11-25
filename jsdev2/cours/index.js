@@ -124,5 +124,54 @@ boxes.forEach((box) => {
     e.target.style.transform = "scale(0.5)";
   });
 });
+//--------------------------------------------------------
+//addEventListener Vs onclick
+//--------------------------------------------------------
+//document.body.onclick = function () {
+//  console.log("click !");
+//};
+//--------------------------------------------------------
+//Stop propagation
+//questionContainer.addEventListener('click', (e) => {
+//  alert("test !");
+//  e.stopPropagation();
+//});
+//---------------------------------------------------------
+//BOM
+//---------------------------------------------------------
+//console.log(window.innerHeight);
+//window.open("http://google.com", "cours js", "height=600, width=800");
+//window.close();
+// confirm
+btn2.addEventListener("click", () => {
+  confirm("Voulez vous vraiment vous tromper ?");
+});
+//prompt
+btn1.addEventListener("click", () => {
+  let answer = prompt("entrer votre nom");
 
+  questionContainer.innerHTML += "<h3>Bravo " + answer + "</h3>";
+});
+// = ou +=
+// Timer , compte à rebours
+setTimeout(() => {
+  questionContainer.style.borderRadius = "300px";
+}, 2000);
 
+//let interval = setInterval(() => {
+  //document.body.innerHTML +=
+    //`<div class='box'><h2>Nouvelle Boite !</h2></div>`;
+//}, 1000);
+
+//document.body.addEventListener("click", () => {
+
+  //clearInterval(interval);
+//});
+// Navigator
+//console.log(navigator.userAgent);
+//-------------------------------------------------------------
+//setProperty
+window.addEventListener("mousemove", (e) => {
+  nav.style.setProperty("--x", e.layerX + "px");
+  nav.style.setProperty("--y", e.layerY + "px");
+});
