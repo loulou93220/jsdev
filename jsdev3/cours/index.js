@@ -73,7 +73,7 @@ for (i = 0; i < data.length; i++) {
   //document.body.innerHTML += "<h2>" + data[i].pseudo + "</h2>";
 }
 //swicht
-document.body.addEventListener('click', (e) => {
+/*document.body.addEventListener('click', (e) => {
   console.log(e.target.id);
   switch (e.target.id) {
     case "javascript":
@@ -88,5 +88,21 @@ document.body.addEventListener('click', (e) => {
     default:
       null;
   }
-});
-
+});*/
+//-----------------------------------------
+//Méthode Objects
+//-----------------------------------------
+document.body.innerHTML = data
+  .sort((a,b) => b.age - a.age)
+.map(
+  (user) =>
+    `
+    <div class="user-card">
+    <h2>${user.pseudo}</h2>
+    <p>Age : ${user.age} ans</p>
+    <p>Status : ${user.admin ? "Modérateur" : "Membre"}</p>
+    </div>
+    `
+)
+  .join("");
+  

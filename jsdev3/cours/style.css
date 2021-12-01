@@ -1,0 +1,10 @@
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.user-card {
+  border: solid 2px;
+  border-radius: 10px;
+  border-color: blueviolet;
+  text-align: center;
+  margin: 10px;
+}
