@@ -92,7 +92,7 @@ for (i = 0; i < data.length; i++) {
 //-----------------------------------------
 //Méthode Objects
 //-----------------------------------------
-document.body.innerHTML = data
+/*document.body.innerHTML = data
   .sort((a,b) => b.age - a.age)
 .map(
   (user) =>
@@ -104,5 +104,53 @@ document.body.innerHTML = data
     </div>
     `
 )
-  .join("");
+  .join("");*/
+
   
+//----------------
+//Les dates
+//----------------
+let date = new Date();
+let iso = date.toISOString();
+
+// Timestamp
+let timestamp = Date.parse(date);
+//console.log(timestamp);
+//isostring
+//console.log(date.toISOString());
+
+function dateParser(chaine) {
+  let newDate = new Date(chaine).toLocaleDateString("fr-FR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+  return newDate;
+}
+//console.log(dateParser(date));
+//console.log(dateParser(timestamp));
+//console.log(dateParser(iso));
+
+//------------------------------------------
+//Destructuring
+//------------------------------------------
+
+let moreData = {
+  desVar: ["element 1", "element 2"],
+};
+
+//------------------------
+//les datasets
+//------------------------
+
+const h3js = document.getElementById("javascript");
+console.log(h3js);
+
+//------------------------
+//Les regex
+//------------------------
+
+
+
