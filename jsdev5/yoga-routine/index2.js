@@ -13,10 +13,10 @@ const basicArray = [
 ];
 let exerciceArray = [];
 
-//get stored exercice array
+// Get stored exercices array
 (() => {
-  if (localStorage.Exrercices) {
-    exerciceArray = JSON.parse(localStorage.Exrercices);
+  if (localStorage.exercices) {
+    exerciceArray = JSON.parse(localStorage.exercices);
   } else {
     exerciceArray = basicArray;
   }
@@ -43,7 +43,6 @@ class Exercice {
         } else {
           return page.finish();
         }
-        this.updateCountdown();
       } else if (this.seconds === "00") {
         this.minutes--;
         this.seconds = 59;
@@ -52,16 +51,16 @@ class Exercice {
         this.seconds--;
         this.updateCountdown();
       }
-    }, 10);
+    }, 1000);
 
     return (main.innerHTML = `
-    <div class"exercice-container">
-    <p>${this.minutes}:${this.seconds}</p>
-    <img src="./img/${exerciceArray[this.index].pic}.png"/>
-    <div>${this.index + 1}/${exerciceArray.length}</div>
-    </div>
-    `);
+      <div class="exercice-container">
+        <p>${this.minutes}:${this.seconds}</p>
+        <img src="./img/${exerciceArray[this.index].pic}.png" />
+        <div>${this.index + 1}/${exerciceArray.length}</div>
+      </div>`);
   }
+
   ring() {
     const audio = new Audio();
     audio.src = "ring.mp3";
@@ -88,6 +87,7 @@ const utils = {
       });
     });
   },
+
   handleEventArrow: function () {
     document.querySelectorAll(".arrow").forEach((arrow) => {
       arrow.addEventListener("click", (e) => {
@@ -107,16 +107,17 @@ const utils = {
       });
     });
   },
+
   deleteItem: function () {
     document.querySelectorAll(".deleteBtn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        let newArray = [];
+        let newArr = [];
         exerciceArray.map((exo) => {
           if (exo.pic != e.target.dataset.pic) {
-            newArray.push(exo);
+            newArr.push(exo);
           }
         });
-        exerciceArray = newArray;
+        exerciceArray = newArr;
         page.lobby();
         this.store();
       });
@@ -140,22 +141,21 @@ const page = {
       .map(
         (exo) =>
           `
-      <li>
-      <div class="card-header">
-      <input type="number" id=${exo.pic} min="1" max="10" value=${exo.min}>
-      <span>min</span>
-      </div>
-      <img src="./img/${exo.pic}.png"/>
-      <i class="fas fa-arrow-alt-circle-left arrow" data-pic=${exo.pic}
-      ></i>
-      <i class="fas fa-times-circle deleteBtn" data-pic=${exo.pic}></i>
-      </li>
+        <li>
+          <div class="card-header">
+            <input type="number" id=${exo.pic} min="1" max="10" value=${exo.min}>
+            <span>min</span>
+          </div>
+          <img src="./img/${exo.pic}.png" />
+          <i class="fas fa-arrow-alt-circle-left arrow" data-pic=${exo.pic}></i>
+          <i class="fas fa-times-circle deleteBtn" data-pic=${exo.pic}></i>
+        </li>
       `
       )
       .join("");
 
     utils.pageContent(
-      "Parametrage <i id='reboot' class='fas fa-undo'></i>",
+      "Paramétrage <i id='reboot' class='fas fa-undo'></i>",
       "<ul>" + mapArray + "</ul>",
       "<button id='start'>Commencer<i class='far fa-play-circle'></i></button>"
     );
@@ -165,20 +165,22 @@ const page = {
     reboot.addEventListener("click", () => utils.reboot());
     start.addEventListener("click", () => this.routine());
   },
+
   routine: function () {
     const exercice = new Exercice();
 
     utils.pageContent("Routine", exercice.updateCountdown(), null);
   },
+
   finish: function () {
     utils.pageContent(
       "C'est terminé !",
-      "<button id='start'>Recommenser</button>",
-      "<button id='reboot' class='btn-reboot>Réinintialiser <i class='fas fa-times-circle'></i></button>"
+      "<button id='start'>Recommencer</button>",
+      "<button id='reboot' class='btn-reboot'>Réinintialiser <i class='fas fa-times-circle'></i></button>"
     );
-    start.addEventListener('click', () => this.routine());
-    reboot.addEventListener('click', () => utils.reboot());
-}
-  };
+    start.addEventListener("click", () => this.routine());
+    reboot.addEventListener("click", () => utils.reboot());
+  },
+};
 
 page.lobby();

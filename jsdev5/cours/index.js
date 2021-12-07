@@ -56,7 +56,7 @@ function User3(pseudo, ville) {
   }
 }
 const user4 = User3('FS', 'Nice')
-console.log(user4);
+//console.log(user4);
 
 //-----------------------------------
 //Class
@@ -75,6 +75,25 @@ class Utilisateur {
 const user5 = new Utilisateur('samia', 'Lyon')
 
 Utilisateur.prototype.sayCity = function () {
-  console.log("J'habite à " + this.ville);
+  //console.log("J'habite à " + this.ville);
 }
-console.log(user5);
+//console.log(user5);
+//---------------------------------
+//L'heritage
+//---------------------------------
+class Animal {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age
+  }
+  saySomething(text) {
+    console.log(this.name + " dit " + text);
+  }
+}
+class Dog extends Animal {
+  run() {
+    console.log("Le chien court !");
+  }
+}
+const rintintin = new Dog("rintintin", 9)
+console.log(rintintin);
