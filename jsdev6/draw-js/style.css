@@ -3,9 +3,10 @@ canvas {
 }
 body {
   cursor: crosshair;
+  text-align: center;
 }
 #reset {
   margin-top: 10px;
   margin-left: 5px;
-  float: left;
+  float: left ;
 }
